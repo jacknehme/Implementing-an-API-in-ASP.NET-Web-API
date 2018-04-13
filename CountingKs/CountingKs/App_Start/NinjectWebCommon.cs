@@ -13,6 +13,7 @@ namespace CountingKs.App_Start
     using Data;
     using System.Web.Http;
     using WebApiContrib.IoC.Ninject;
+    using Services;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -68,6 +69,7 @@ namespace CountingKs.App_Start
         {
             kernel.Bind<ICountingKsRepository>().To<CountingKsRepository>();
             kernel.Bind<CountingKsContext>().To<CountingKsContext>();
+            kernel.Bind<ICountingKsIdentityService>().To<CountingKsIdentityService>();
         }        
     }
 }

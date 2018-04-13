@@ -13,10 +13,28 @@ namespace CountingKs
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                name: "Food",
+                routeTemplate: "api/nutrition/foods/{foodid}",
+                defaults: new { controller = "foods", foodid = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "Measures",
+                routeTemplate: "api/nutrition/foods/{foodid}/measures/{id}",
+                defaults: new { controller = "measures", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "Diaries",
+                routeTemplate: "api/user/diaries/{diaryid}",
+                defaults: new { controller = "diaries", diaryid = RouteParameter.Optional }
+            );
+
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
