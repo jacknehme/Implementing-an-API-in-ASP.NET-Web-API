@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using CountingKs.Filters;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,11 @@ namespace CountingKs
             // CamelCasePropertyNamesContractResolver will return Camel case instead of Pascal case formatted JSON
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+#if !DEBUG
+            // Force HTTPS on entire API
+            config.Filters.Add(new RequireHttpsAttribute());
+#endif
         }
     }
 }
