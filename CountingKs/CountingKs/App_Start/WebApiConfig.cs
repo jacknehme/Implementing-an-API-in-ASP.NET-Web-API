@@ -30,6 +30,18 @@ namespace CountingKs
                 defaults: new { controller = "diaries", diaryid = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "DiarySummary",
+                routeTemplate: "api/user/diaries/{diaryid}/summary",
+                defaults: new { controller = "diarysummary" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "DiaryEntries",
+                routeTemplate: "api/user/diaries/{diaryid}/entries/{id}",
+                defaults: new { controller = "diaryentries", id = RouteParameter.Optional }
+            );
+
             //config.Routes.MapHttpRoute(
             //    name: "DefaultApi",
             //    routeTemplate: "api/{controller}/{id}",
@@ -46,7 +58,7 @@ namespace CountingKs
 
             // CamelCasePropertyNamesContractResolver will return Camel case instead of Pascal case formatted JSON
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
-            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); 
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }
