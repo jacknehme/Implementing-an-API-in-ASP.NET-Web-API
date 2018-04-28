@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using WebApiContrib.Formatting.Jsonp;
 
 namespace CountingKs
 {
@@ -60,6 +61,11 @@ namespace CountingKs
             // CamelCasePropertyNamesContractResolver will return Camel case instead of Pascal case formatted JSON
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            // Add support for JSONP
+            var formatter = new JsonpMediaTypeFormatter(jsonFormatter, "cb");
+            config.Formatters.Insert(0, formatter);
+
 
 #if !DEBUG
             // Force HTTPS on entire API

@@ -8,9 +8,11 @@ using CountingKs.Data;
 using System.Threading;
 using CountingKs.Services;
 using CountingKs.Models;
+using CountingKs.Filters;
 
 namespace CountingKs.Controllers
 {
+    [CountingKsAuthorize]
     public class DiariesController : BaseApiController
     {
         private ICountingKsIdentityService _identityService;
