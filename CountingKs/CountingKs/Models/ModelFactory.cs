@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Http.Routing;
 using CountingKs.Data;
 using CountingKs.Data.Entities;
+using CountingKs.Models.Models;
 
 namespace CountingKs.Models
 {
@@ -59,6 +60,15 @@ namespace CountingKs.Models
                 FoodDescription = entry.FoodItem.Description,
                 MeasureDescription = entry.Measure.Description,
                 MeasureUrl = _urlHelper.Link("Measures", new { foodid = entry.FoodItem.Id, id = entry.Measure.Id })
+            };
+        }
+
+        public AuthTokenModel Create(AuthToken authToken)
+        {
+            return new AuthTokenModel()
+            {
+                Token = authToken.Token,
+                Expiration = authToken.Expiration
             };
         }
 

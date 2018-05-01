@@ -39,6 +39,12 @@ namespace CountingKs
             );
 
             config.Routes.MapHttpRoute(
+                name: "Token",
+                routeTemplate: "api/token",
+                defaults: new { controller = "token" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DiaryEntries",
                 routeTemplate: "api/user/diaries/{diaryid}/entries/{id}",
                 defaults: new { controller = "diaryentries", id = RouteParameter.Optional }
