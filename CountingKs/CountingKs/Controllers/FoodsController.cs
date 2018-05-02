@@ -12,6 +12,7 @@ using CountingKs.Filters;
 
 namespace CountingKs.Controllers
 {
+    [CountingKsAuthorize(false)]
     public class FoodsController : BaseApiController
     {
         public FoodsController(ICountingKsRepository repo): base(repo)

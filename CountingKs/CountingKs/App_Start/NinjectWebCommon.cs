@@ -14,6 +14,7 @@ namespace CountingKs.App_Start
     using System.Web.Http;
     using WebApiContrib.IoC.Ninject;
     using Services;
+    using System.Web.Http.Filters;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -50,6 +51,7 @@ namespace CountingKs.App_Start
 
                 // Support WebApi
                 GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
+                GlobalConfiguration.Configuration.Services.Add(typeof(IFilterProvider), new NinjectWebApiFilterProvider(kernel));
 
                 RegisterServices(kernel);
                 return kernel;
